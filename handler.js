@@ -11,8 +11,7 @@ const TELEGRAM_URL = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`
 
 async function listInstances() {
   const instances = await ec2.describeInstances().promise()
-  const instancesTxt = ''
-  let number = 0
+  let instancesTxt = 'Instances: \n'
   instances['Reservations'].forEach((instance) => {
     const {
       InstanceId: instanceId,
@@ -20,8 +19,7 @@ async function listInstances() {
       Tags,
     } = instance['Instances'][0]
     const { Value: name } = Tags.find((tag) => tag.Key === 'Name')
-    instancesTxt += `${number}.\nid: ${instanceId}\nname: ${name}\nstate: ${state}\n`
-    number++
+    instancesTxt += `\ninstanceId: ${instanceId}\nname: ${name}\nstate: ${state}\n`
   })
   console.log(instancesTxt)
 }
@@ -33,8 +31,7 @@ module.exports.handler = async (event) => {
     const text = 'ls'
     const [command, ...args] = text.split(' ')
     await commands[command](args)
-    console.log('log for test functionallity')
   } catch (error) {
-    console.log(`ERROT: ${error.code}`)
+    console.log(`ERROR: ${error}`)
   }
 }
