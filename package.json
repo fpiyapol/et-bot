@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/fpiyapol/et-bot#readme",
   "dependencies": {
-    "aws-sdk": "^2.682.0",
     "axios": "^0.19.2"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.683.0"
   }
 }
