@@ -4,9 +4,10 @@ const {
   listInstances: ls,
   startInstances: start,
   stopInstances: stop,
+  terminateInstances: term,
 } = require('./tools/ec2-service.js')
 
-const commands = {ls, start, stop}
+const commands = { ls, start, stop, term }
 
 module.exports.handler = async (event) => {
   try {

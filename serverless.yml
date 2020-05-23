@@ -9,6 +9,7 @@ provider:
         - ec2:DescribeInstances
         - ec2:StopInstances
         - ec2:StartInstances
+        - ec2:TerminateInstances
       Resource: '*'
   environment:
     TELEGRAM_TOKEN: ${env:TELEGRAM_TOKEN}

@@ -5,12 +5,17 @@ const ec2 = new AWS.EC2({ apiVersion: '2016-11-15' })
 
 const startInstances = async (instanceIds) => {
   await ec2.startInstances({ InstanceIds: instanceIds }).promise()
-  console.log(`starting instance(s): ${instanceIds.join(' ')}`)
+  console.log(`starting instances: ${instanceIds.join(' ')}`)
 }
 
 const stopInstances = async (instanceIds) => {
   await ec2.stopInstances({ InstanceIds: instanceIds }).promise()
-  console.log(`stopping instance(s): ${instanceIds.join(' ')}`)
+  console.log(`stopping instances: ${instanceIds.join(' ')}`)
+}
+
+const terminateInstances = async (instanceIds) => {
+  await ec2.terminateInstances({ InstanceIds: instanceIds }).promise()
+  console.log(`terminating instances: ${instanceIds.join(' ')}`)
 }
 
 const listInstances = async () => {
@@ -28,4 +33,9 @@ const listInstances = async () => {
   console.log(instancesTxt)
 }
 
-module.exports = { listInstances, stopInstances, startInstances }
+module.exports = {
+  listInstances,
+  stopInstances,
+  startInstances,
+  terminateInstances,
+}
