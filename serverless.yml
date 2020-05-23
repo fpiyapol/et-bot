@@ -6,7 +6,8 @@ provider:
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
-        - 'ec2:DescribeInstances'
+        - ec2:DescribeInstances
+        - ec2:StopInstances
       Resource: '*'
   environment:
     TELEGRAM_TOKEN: ${env:TELEGRAM_TOKEN}
