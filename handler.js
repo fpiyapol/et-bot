@@ -1,11 +1,16 @@
 'use strict'
 
-const { listInstances, stopInstances } = require('./tools/ec2-service.js')
-const commands = { ls: listInstances, stop: stopInstances }
+const {
+  listInstances: ls,
+  startInstances: start,
+  stopInstances: stop,
+} = require('./tools/ec2-service.js')
+
+const commands = {ls, start, stop}
 
 module.exports.handler = async (event) => {
   try {
-    const text = ''
+    const text = event
     const [command, ...args] = text.split(' ')
     await commands[command](args)
   } catch (error) {

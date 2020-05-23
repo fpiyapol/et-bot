@@ -3,6 +3,11 @@ AWS.config.update({ region: 'ap-southeast-1' })
 
 const ec2 = new AWS.EC2({ apiVersion: '2016-11-15' })
 
+const startInstances = async (instanceIds) => {
+  await ec2.startInstances({ InstanceIds: instanceIds }).promise()
+  console.log(`starting instance(s): ${instanceIds.join(' ')}`)
+}
+
 const stopInstances = async (instanceIds) => {
   await ec2.stopInstances({ InstanceIds: instanceIds }).promise()
   console.log(`stopping instance(s): ${instanceIds.join(' ')}`)
@@ -23,4 +28,4 @@ const listInstances = async () => {
   console.log(instancesTxt)
 }
 
-module.exports = { listInstances, stopInstances }
+module.exports = { listInstances, stopInstances, startInstances }
