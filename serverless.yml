@@ -17,7 +17,7 @@ functions:
   etbot:
     name: etbot-handler
     handler: handler.handler
-    memorySize: 128
+    memorySize: 256
     events:
       - http:
           path: et-bot
