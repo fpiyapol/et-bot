@@ -3,19 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fpiyapol/et-bot.git"
-  },
-  "author": "",
+  "author": "Piyapol Permpongpaiboon (fpiyapol)",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fpiyapol/et-bot/issues"
-  },
-  "homepage": "https://github.com/fpiyapol/et-bot#readme",
   "dependencies": {
     "axios": "^0.19.2"
   },
