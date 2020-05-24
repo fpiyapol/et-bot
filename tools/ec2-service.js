@@ -20,15 +20,17 @@ const terminateInstances = async (instanceIds) => {
 
 const listInstances = async () => {
   const instances = await ec2.describeInstances().promise()
-  let instancesTxt = 'Instances: \n'
-  instances['Reservations'].forEach((instance) => {
-    const {
-      InstanceId: instanceId,
-      State: { Name: state },
-      Tags: tags,
-    } = instance['Instances'][0]
-    const { Value: name } = tags.find((tag) => tag.Key === 'Name')
-    instancesTxt += `\ninstanceId: ${instanceId}\nname: ${name}\nstate: ${state}\n`
+  let instancesTxt = 'Instances: '
+  instances['Reservations'].forEach((reservation) => {
+    reservation['Instances'].forEach((instance) => {
+      const {
+        InstanceId: instanceId,
+        State: { Name: state },
+        Tags,
+      } = instance
+      const { Value: name = '' } = Tags.find((tag) => tag.Key === 'Name') || {}
+      instancesTxt += `\ninstanceID: ${instanceId}\nname: ${name}\nstate: ${state}\n`
+    })
   })
   return instancesTxt
 }
