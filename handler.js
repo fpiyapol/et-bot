@@ -6,15 +6,26 @@ const {
   stopInstances: stop,
   terminateInstances: term,
 } = require('./tools/ec2-service.js')
+const bot = require('./tools/telegram-bot-service')
 
 const commands = { ls, start, stop, term }
+let replyMsg = ''
 
 module.exports.handler = async (event) => {
+  let { body } = event
+  const {
+    message: {
+      chat: { id: chat_id },
+      text,
+    },
+  } = JSON.parse(body)
   try {
-    const text = event
     const [command, ...args] = text.split(' ')
-    await commands[command](args)
+    replyMsg = await commands[command](args)
+    await bot.sendMessage(chat_id, replyMsg)
   } catch (error) {
-    console.log(`ERROR: ${error}`)
+    replyMsg = 'Error, something went wrong.'
+    await bot.sendMessage(chat_id, replyMsg)
   }
+  return { statusCode: 200 }
 }

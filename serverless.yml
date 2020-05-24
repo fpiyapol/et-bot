@@ -18,3 +18,8 @@ functions:
     name: etbot-handler
     handler: handler.handler
     memorySize: 128
+    events:
+      - http:
+          path: et-bot
+          method: post
+          cors: true
