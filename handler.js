@@ -32,7 +32,7 @@ module.exports.handler = async (event) => {
     await bot.sendMessage(chat_id, replyMsg)
   } catch (error) {
     replyMsg = 'Error, something went wrong.'
-    await bot.sendMessage(chat_id, error)
+    await bot.sendMessage(chat_id, replyMsg)
   }
   return { statusCode: 200 }
 }
